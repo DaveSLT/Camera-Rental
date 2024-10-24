@@ -4,17 +4,21 @@
     >
         <!-- Header -->
         <header
-            class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg fixed w-full z-10"
+            class="bg-black w-full transition-all duration-300"
+            :class="{ fixed: !isSmallScreen, relative: isSmallScreen }"
         >
             <div
                 class="container mx-auto flex justify-between items-center py-4 px-4"
             >
+                <!-- Logo / Site Name -->
                 <h1
                     class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
                 >
-                    Professional Camera Rental
+                    ZoomPro
                 </h1>
-                <nav class="space-x-4">
+
+                <!-- Main Navigation for medium screens and larger -->
+                <nav class="hidden md:flex space-x-4">
                     <router-link
                         to="/login"
                         class="bg-gray-700 hover:bg-gray-600 border border-gray-400 text-white py-2 px-4 rounded transition duration-300"
@@ -28,12 +32,39 @@
                         Sign Up
                     </router-link>
                 </nav>
+
+                <!-- Hamburger Menu Icon for small screens -->
+                <div class="md:hidden">
+                    <button
+                        @click="toggleMenu"
+                        class="text-white focus:outline-none"
+                    >
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu (visible when hamburger is clicked) -->
+            <div v-if="isMenuOpen" class="bg-black md:hidden px-4">
+                <router-link
+                    to="/login"
+                    class="block text-white py-2 px-4 hover:bg-gray-600 rounded mt-2"
+                >
+                    Login
+                </router-link>
+                <router-link
+                    to="/signUp"
+                    class="block text-white py-2 px-4 hover:bg-gray-600 rounded mt-2"
+                >
+                    Sign Up
+                </router-link>
             </div>
         </header>
 
         <!-- Hero Section -->
         <section
-            class="bg-gradient-to-br from-gray-800 to-gray-700 py-12 md:py-16"
+            class="bg-gradient-to-br from-gray-800 to-gray-700 py-12 md:py-20"
+            :class="{ 'pt-24': !isSmallScreen }"
         >
             <div
                 class="container mx-auto flex flex-col md:flex-row items-center"
@@ -64,7 +95,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Features Section -->
         <section class="bg-gray-900 py-10 md:py-12">
             <div class="container mx-auto">
@@ -127,8 +157,8 @@
         <footer class="bg-black py-4">
             <div class="container mx-auto text-center text-gray-400">
                 <p>
-                    &copy; {{ new Date().getFullYear() }} Professional Camera
-                    Rental System. All rights reserved.
+                    &copy; {{ new Date().getFullYear() }} ZoomPro. All rights
+                    reserved.
                 </p>
             </div>
         </footer>
@@ -138,24 +168,45 @@
 <script>
 export default {
     name: "LandingPage",
+    data() {
+        return {
+            isMenuOpen: false,
+            isSmallScreen: false,
+        };
+    },
+    mounted() {
+        this.checkScreenSize();
+        window.addEventListener("resize", this.checkScreenSize);
+    },
+    methods: {
+        toggleMenu() {
+            this.isMenuOpen = !this.isMenuOpen;
+        },
+        checkScreenSize() {
+            this.isSmallScreen = window.innerWidth <= 768;
+        },
+    },
+    beforeDestroy() {
+        window.removeEventListener("resize", this.checkScreenSize);
+    },
 };
 </script>
 
 <style scoped>
 /* Responsive styles */
 @media (max-width: 640px) {
-    header {
-        text-align: center;
-    }
-    h1 {
-        font-size: 2rem; /* Smaller font size for mobile */
+    header h1 {
+        font-size: 1.75rem;
     }
     section {
-        padding: 1.5rem 0; /* Reduce padding for mobile */
+        padding: 1.5rem 0;
     }
     img {
-        max-width: 100%; /* Ensure images are responsive */
-        height: auto; /* Maintain aspect ratio */
+        max-width: 100%;
+        height: auto;
+    }
+    footer p {
+        font-size: 0.875rem;
     }
 }
 </style>

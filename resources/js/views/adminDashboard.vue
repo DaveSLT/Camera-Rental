@@ -53,13 +53,13 @@ export default {
             rentals: [
                 {
                     id: 1,
-                    customerName: "John Doe",
+                    customerName: "Jeffrey Romerosa",
                     rentedDate: "2024-10-01",
                     returnDate: "2024-10-10",
                 },
                 {
                     id: 2,
-                    customerName: "Jane Smith",
+                    customerName: "Andre Salvador",
                     rentedDate: "2024-10-05",
                     returnDate: "2024-10-15",
                 },
@@ -69,6 +69,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Custom styles */
-</style>
+<style scoped></style>

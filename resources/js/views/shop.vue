@@ -11,7 +11,7 @@
                     <h1
                         class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
                     >
-                        Professional Camera Rental
+                        ZoomPro
                     </h1>
                     <nav class="hidden md:flex space-x-6">
                         <router-link
@@ -22,6 +22,7 @@
                                 'Account',
                                 'LogOut',
                             ]"
+                            :key="link"
                             :to="
                                 link === 'LogOut'
                                     ? '/'
@@ -82,11 +83,11 @@
                         'Shop',
                         'Support',
                         'Account',
-                        'LandingPage',
+                        'LogOut',
                     ]"
                     :key="link"
                     :to="
-                        link === 'Home'
+                        link === 'LogOut'
                             ? '/'
                             : `/${link.toLowerCase().replace(' ', '-')}`
                     "
@@ -110,12 +111,17 @@
                     Camera Categories
                 </h2>
                 <div
-                    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+                    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6"
                 >
                     <div
                         v-for="category in categories"
                         :key="category.name"
-                        class="bg-gray-800 rounded-lg shadow-lg p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105"
+                        @click="selectCategory(category.name)"
+                        class="bg-gray-800 rounded-lg shadow-lg p-6 text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 cursor-pointer"
+                        :class="{
+                            'ring-2 ring-purple-500':
+                                selectedCategory === category.name,
+                        }"
                     >
                         <h3 class="text-xl font-semibold mb-2">
                             {{ category.name }}
@@ -176,12 +182,14 @@
                             <span class="text-2xl font-bold text-purple-400"
                                 >${{ camera.price }}/day</span
                             >
-                            <button
-                                @click="rentCamera(camera)"
-                                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
-                            >
-                                Rent Now
-                            </button>
+                            <router-link to="">
+                                <button
+                                    @click="rentCamera(camera)"
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+                                >
+                                    Rent Now
+                                </button>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -191,8 +199,8 @@
         <footer class="bg-gray-900 py-8">
             <div class="container mx-auto px-4 text-center text-gray-400">
                 <p>
-                    &copy; {{ new Date().getFullYear() }} Professional Camera
-                    Rental. All rights reserved.
+                    &copy; {{ new Date().getFullYear() }} ZoomPro. All rights
+                    reserved.
                 </p>
             </div>
         </footer>
@@ -203,18 +211,20 @@
 import { ref, computed } from "vue";
 
 import Canon_EOS_R5 from "@/img/Canon_EOS_R5.png";
-import Sony_A7_III from "@/img/Sony_A7_III.jpg";
-import Nikon_Z6 from "@/img/Nikon_Z6.jpg";
-import Fujifilm_X_T4 from "@/img/Fujifilm_X-T4.jpg";
-import Panasonic_Lumix_GH5 from "@/img/Panasonic_Lumix_GH5.jpg";
-import Blackmagic_Pocket_6K from "@/img/Blackmagic_Pocket_6K.jpg";
+import Sony_A7_III from "@/img/Sony-A7-III-.png";
+import Nikon_Z6 from "@/img/Nikon_Z6.png";
+import Fujifilm_X_T4 from "@/img/Fujifilm_X-T4.png";
+import Panasonic_Lumix_GH5 from "@/img/Panasonic_Lumix_GH5.png";
+import Blackmagic_Pocket_6K from "@/img/Blackmagic_Pocket_6K.png";
 
 export default {
     setup() {
         const mobileMenuOpen = ref(false);
         const searchTerm = ref("");
+        const selectedCategory = ref("All");
 
         const categories = [
+            { name: "All", description: "View all cameras" },
             { name: "DSLR", description: "Explore our collection of DSLRs." },
             {
                 name: "Mirrorless",
@@ -251,6 +261,7 @@ export default {
                 price: 130,
                 image: Nikon_Z6,
                 category: "Mirrorless",
+                category: "Point and Shoot",
             },
             {
                 id: 4,
@@ -276,10 +287,13 @@ export default {
         ]);
 
         const filteredCameras = computed(() =>
-            cameras.value.filter((camera) =>
-                camera.name
-                    .toLowerCase()
-                    .includes(searchTerm.value.toLowerCase())
+            cameras.value.filter(
+                (camera) =>
+                    (selectedCategory.value === "All" ||
+                        camera.category === selectedCategory.value) &&
+                    camera.name
+                        .toLowerCase()
+                        .includes(searchTerm.value.toLowerCase())
             )
         );
 
@@ -292,6 +306,10 @@ export default {
             // Implement rental logic here
         };
 
+        const selectCategory = (category) => {
+            selectedCategory.value = category;
+        };
+
         return {
             mobileMenuOpen,
             searchTerm,
@@ -300,6 +318,8 @@ export default {
             filteredCameras,
             toggleMobileMenu,
             rentCamera,
+            selectedCategory,
+            selectCategory,
         };
     },
 };
@@ -309,6 +329,4 @@ export default {
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* Add any additional custom styles here */
 </style>

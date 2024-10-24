@@ -11,7 +11,7 @@
                     <h1
                         class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
                     >
-                        Professional Camera Rental
+                        ZoomPro
                     </h1>
                     <nav class="hidden md:flex space-x-6">
                         <router-link
@@ -83,11 +83,11 @@
                         'Shop',
                         'Support',
                         'Account',
-                        'LandingPage',
+                        'LogOut',
                     ]"
                     :key="link"
                     :to="
-                        link === 'Home'
+                        link === 'LogOut'
                             ? '/'
                             : `/${link.toLowerCase().replace(' ', '-')}`
                     "
@@ -361,7 +361,7 @@
             <div class="container mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
-                        <h3 class="text-xl font-bold mb-4">LensMaster</h3>
+                        <h3 class="text-xl font-bold mb-4">ZoomPro</h3>
                         <p class="text-gray-400">
                             Empowering creators with top-notch camera gear.
                         </p>
@@ -456,7 +456,7 @@
                     class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400"
                 >
                     <p>
-                        &copy; {{ new Date().getFullYear() }} LensMaster. All
+                        &copy; {{ new Date().getFullYear() }} ZoomPro. All
                         rights reserved.
                     </p>
                 </div>
@@ -467,11 +467,14 @@
 
 <script>
 import Canon_EOS_R5 from "@/img/Canon_EOS_R5.png";
-import Sony_A7_III from "@/img/Sony_A7_III.jpg";
-import Nikon_Z6 from "@/img/Nikon_Z6.jpg";
-import Fujifilm_X_T4 from "@/img/Fujifilm_X-T4.jpg";
-import Panasonic_Lumix_GH5 from "@/img/Panasonic_Lumix_GH5.jpg";
-import Blackmagic_Pocket_6K from "@/img/Blackmagic_Pocket_6K.jpg";
+import Sony_A7_III from "@/img/Sony-A7-III-.png";
+import Nikon_Z6 from "@/img/Nikon_Z6.png";
+import Fujifilm_X_T4 from "@/img/Fujifilm_X-T4.png";
+import Panasonic_Lumix_GH5 from "@/img/Panasonic_Lumix_GH5.png";
+import Blackmagic_Pocket_6K from "@/img/Blackmagic_Pocket_6K.png";
+import andre from "@/img/andre.jpg";
+import dave from "@/img/dave.jpg";
+import jeff from "@/img/jeff.jpg";
 
 export default {
     data() {
@@ -533,27 +536,27 @@ export default {
             testimonials: [
                 {
                     id: 1,
-                    name: "Sarah Johnson",
+                    name: "Andre Salvador",
                     profession: "Professional Photographer",
-                    avatar: "/avatar1.jpg",
+                    avatar: andre,
                     comment:
-                        "LensMaster has been a game-changer for my photography business. The quality of their cameras is unmatched!",
+                        "ZoomPro has been a game-changer for my photography business. The quality of their cameras is unmatched!",
                 },
                 {
                     id: 2,
-                    name: "Mike Chen",
+                    name: "Dave Salte",
                     profession: "Indie Filmmaker",
-                    avatar: "/avatar2.jpg",
+                    avatar: dave,
                     comment:
-                        "As an indie filmmaker, having access to high-end equipment is crucial. LensMaster delivers every time.",
+                        "As an indie filmmaker, having access to high-end equipment is crucial. ZoomPro delivers every time.",
                 },
                 {
                     id: 3,
-                    name: "Emily Rodriguez",
+                    name: "Jeffrey Romerosa",
                     profession: "Travel Vlogger",
-                    avatar: "/avatar3.jpg",
+                    avatar: jeff,
                     comment:
-                        "I've been using LensMaster for all my travels. Their service is top-notch, and the gear is always in perfect condition.",
+                        "I've been using ZoomPro for all my travels. Their service is top-notch, and the gear is always in perfect condition.",
                 },
             ],
         };
@@ -598,6 +601,4 @@ export default {
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* Add any additional custom styles here */
 </style>
