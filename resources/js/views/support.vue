@@ -11,7 +11,7 @@
                     <h1
                         class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
                     >
-                        Professional Camera Rental
+                        ZoomPro
                     </h1>
                     <nav class="hidden md:flex space-x-6">
                         <router-link
@@ -272,8 +272,8 @@
         <footer class="bg-gray-900 py-8">
             <div class="container mx-auto px-4 text-center text-gray-400">
                 <p>
-                    &copy; {{ new Date().getFullYear() }} Professional Camera
-                    Rental. All rights reserved.
+                    &copy; {{ new Date().getFullYear() }} ZoomPro. All rights
+                    reserved.
                 </p>
             </div>
         </footer>
@@ -316,6 +316,4 @@ export default {
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* Add any additional custom styles here */
 </style>

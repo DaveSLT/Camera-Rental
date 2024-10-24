@@ -44,6 +44,47 @@
                     </button></router-link
                 >
             </form>
+
+            <!-- Forgot Password and Sign Up Section -->
+            <div class="flex justify-between text-gray-400 text-sm mt-4">
+                <router-link
+                    to="/forgot-password"
+                    class="hover:text-purple-500"
+                >
+                    Forgot Password?
+                </router-link>
+                <router-link to="/signup" class="hover:text-purple-500">
+                    Sign Up
+                </router-link>
+            </div>
+
+            <!-- Social Media Sign-In Section -->
+            <div class="text-gray-400 text-center mt-6">
+                or you can sign in with
+            </div>
+            <div class="flex justify-center mt-4 space-x-4">
+                <button
+                    class="bg-gray-700 rounded-full p-2 hover:bg-gray-600 transition"
+                >
+                    <i class="fab fa-google text-white"></i>
+                </button>
+                <button
+                    class="bg-gray-700 rounded-full p-2 hover:bg-gray-600 transition"
+                >
+                    <i class="fab fa-github text-white"></i>
+                </button>
+                <button
+                    class="bg-gray-700 rounded-full p-2 hover:bg-gray-600 transition"
+                >
+                    <i class="fab fa-facebook text-white"></i>
+                </button>
+                <button
+                    class="bg-gray-700 rounded-full p-2 hover:bg-gray-600 transition"
+                >
+                    <i class="fas fa-ellipsis-h text-white"></i>
+                </button>
+            </div>
+
             <p class="text-sm text-center text-gray-400 mt-6">
                 Don't have an account?
                 <router-link
@@ -73,6 +114,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Custom styles */
-</style>
+<style scoped></style>

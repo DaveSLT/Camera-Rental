@@ -7,7 +7,6 @@ import signUp from "../views/signUp.vue";
 import Shop from "@/views/shop.vue";
 import Support from "@/views/Support.vue";
 import MyAccount from "@/views/myaccount.vue";
-import adminDashboard from "../views/adminDashboard.vue";
 import AdminDashboard from "../views/adminDashboard.vue";
 
 const routes = [
